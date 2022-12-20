@@ -1,0 +1,18 @@
+volumes:
+  db-store:
+ 
+services:
+  db:
+    image: mysql:8.0-oracle
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=my_database
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+ 
+  schemaspy:
+    build: schemaspy
+    volumes:
+      - ./output:/output

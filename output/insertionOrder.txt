@@ -1,0 +1,5 @@
+pokemon
+type
+waza
+pokemon_type
+pokemon_waza

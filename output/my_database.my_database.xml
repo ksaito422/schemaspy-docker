@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="my_database" schema="my_database" type="MySQL - 8.0.31">
+   <tables>
+      <table catalog="my_database" name="pokemon" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="my_database" column="pokemon_id" foreignKey="pokemon_type_ibfk_1" implied="false" onDeleteCascade="false" table="pokemon_type"/>
+            <child catalog="my_database" column="pokemon_id" foreignKey="pokemon_waza_ibfk_1" implied="false" onDeleteCascade="false" table="pokemon_waza"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="my_database" name="pokemon_type" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="pokemon_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="my_database" column="id" foreignKey="pokemon_type_ibfk_1" implied="false" onDeleteCascade="false" table="pokemon"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="my_database" column="id" foreignKey="pokemon_type_ibfk_2" implied="false" onDeleteCascade="false" table="type"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="pokemon_id" unique="false">
+            <column ascending="true" name="pokemon_id"/>
+         </index>
+         <index name="type_id" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+      <table catalog="my_database" name="pokemon_waza" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="pokemon_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="my_database" column="id" foreignKey="pokemon_waza_ibfk_1" implied="false" onDeleteCascade="false" table="pokemon"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="waza_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="my_database" column="id" foreignKey="pokemon_waza_ibfk_2" implied="false" onDeleteCascade="false" table="waza"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="pokemon_id" unique="false">
+            <column ascending="true" name="pokemon_id"/>
+         </index>
+         <index name="waza_id" unique="false">
+            <column ascending="true" name="waza_id"/>
+         </index>
+      </table>
+      <table catalog="my_database" name="type" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="my_database" column="type_id" foreignKey="pokemon_type_ibfk_2" implied="false" onDeleteCascade="false" table="pokemon_type"/>
+            <child catalog="my_database" column="type_id" foreignKey="waza_ibfk_1" implied="false" onDeleteCascade="false" table="waza"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="my_database" name="waza" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="my_database" column="waza_id" foreignKey="pokemon_waza_ibfk_2" implied="false" onDeleteCascade="false" table="pokemon_waza"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="my_database" column="id" foreignKey="waza_ibfk_1" implied="false" onDeleteCascade="false" table="type"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="type_id" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
